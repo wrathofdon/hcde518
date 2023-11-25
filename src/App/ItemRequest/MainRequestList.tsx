@@ -25,6 +25,8 @@ import { PeopleWithHistories } from "../Data/People";
 import "./ItemRequest.css";
 import UserBio from "./UserBio";
 import { connect } from "react-redux";
+import { PrimaryButton } from "@fluentui/react";
+import { PopupButton } from "../Shared/PopupButton";
 
 interface IMainRequestListProps {
 }
@@ -100,90 +102,6 @@ class MainRequestList extends React.Component<
     );
   }
 
-  
-
-  renderButton() {
-    let { userButtonExpanded } = this.state;
-    return (
-      <ButtonGroup
-        variant="contained"
-        ref={this.anchorRef}
-        aria-label="split button"
-      >
-        <Button
-          size="small"
-          aria-controls={userButtonExpanded ? "split-button-menu" : undefined}
-          aria-expanded={userButtonExpanded ? "true" : undefined}
-          aria-label="select merge strategy"
-          aria-haspopup="menu"
-          onClick={() => {
-            this.setState({ userButtonExpanded: !userButtonExpanded });
-          }}
-        >
-          Interactions
-          <ArrowDropDownIcon />
-        </Button>
-      </ButtonGroup>
-    );
-  }
-
-  renderPopper() {
-    let { userButtonExpanded } = this.state;
-    let options: string[] = [
-      "Gift item",
-      "Pause listing",
-      "Edit description",
-      "Convert to legacy item",
-      "Convert to library item",
-      "Unpublish listing",
-    ];
-    return (
-      <Popper
-        sx={{
-          zIndex: 1,
-        }}
-        open={userButtonExpanded}
-        anchorEl={this.anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              backgroundColor: "#b4d6fa",
-              transformOrigin:
-                placement === "bottom" ? "center top" : "left bottom",
-            }}
-          >
-            <Paper>
-              <ClickAwayListener
-                onClickAway={() => {
-                  this.setState({ userButtonExpanded: false });
-                }}
-              >
-                <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
-                    <MenuItem
-                      key={option}
-                      onClick={(event) => {
-                        alert(`You selected ${option}`);
-                        this.setState({ userButtonExpanded: false });
-                      }}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    );
-  }
-
   render() {
     let { store } = this.props;
     let macguffen = store.content.macGuffenDescription;
@@ -224,8 +142,14 @@ class MainRequestList extends React.Component<
             boxSizing: "border-box",
           }}
         >
-          {this.renderButton()}
-          {this.renderPopper()}
+          <PopupButton options={[
+            "Gift item",
+            "Pause listing",
+            "Edit description",
+            "Convert to legacy item",
+            "Convert to library item",
+            "Unpublish listing",
+          ]} label={"Interactions"}/>
         </div>
       </div>
     );

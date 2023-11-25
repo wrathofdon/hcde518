@@ -19,7 +19,7 @@ import { IPoolStore, IStoreProps, poolStore, storeDispatch } from "../../redux/p
 import { connect } from "react-redux";
 import { IPersonAbridged, generateRandomFemale, generateRandomMale } from "../Types/Types";
 import { TextField, PrimaryButton } from "@fluentui/react";
-import { Button } from "@mui/material";
+import { Button, Snackbar } from "@mui/material";
 import { avatarPhotoMap } from "../Data/AvatarPhotos";
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -45,7 +45,7 @@ interface IComplexCardProps {
   contents: {
     img: string[];
     description?: string;
-    jsx?: JSX.Element;
+    jsx?: (createSnackBar: (text: string, duration?: number) => void) => JSX.Element;
   }
   comments?: string[];
 }
@@ -54,6 +54,7 @@ interface IComplexCardState {
   isCommentsExpanded: boolean;
   comments: ICardComments[];
   addedComment: string;
+  snackBar?: {text: string, duration: number}
 }
 
 interface ICardComments {
@@ -124,6 +125,7 @@ combinedProps,
 
   renderCardHeader(title: string, date: Date, img?: string, ): JSX.Element {
     return         <CardHeader
+    onClick={() => { this.generateSnackBar("If we had more time, clicking this would give you more information about the user/organization.  But I had to put this together in a few days, so use your imagination.", 5000)}}
     avatar={
       this.renderAvatar(title, img)
     }
@@ -151,6 +153,10 @@ combinedProps,
 
   }
 
+  generateSnackBar(text: string, duration: number = 3000) {
+    this.setState({ snackBar: { text: text, duration: duration}});
+  }
+
   
   render() {
     let { comments, isCommentsExpanded } = this.state;
@@ -159,6 +165,9 @@ combinedProps,
     let commentString = "Add comment";
     if (comments?.length) {
        commentString = `${isCommentsExpanded ? "Hide" : "View"} comments (${comments.length})`
+    }
+    let createSnackBar = (text: string, duration?: number) => {
+      this.generateSnackBar(text, duration);
     }
     return (
       <Card style={{ maxWidth: 330, marginTop: 15, marginLeft: 15, }}>
@@ -175,7 +184,7 @@ combinedProps,
           </Typography>
         </CardContent>}
         {!!this.props.contents.jsx && <CardContent>
-          {this.props.contents.jsx}
+          {this.props.contents.jsx(createSnackBar)}
         </CardContent>}
         <CardActions disableSpacing>
           <IconButton aria-label="Like" onClick={this.handleLikeClick}>
@@ -226,6 +235,12 @@ combinedProps,
 
           </CardContent>
         </Collapse>
+        <Snackbar
+        open={!!this.state.snackBar}
+        autoHideDuration={this.state.snackBar?.duration || 3000}
+        onClose={() => this.setState({ snackBar: undefined})}
+        message={this.state.snackBar?.text || ""}
+      />
       </Card>
     );
   }

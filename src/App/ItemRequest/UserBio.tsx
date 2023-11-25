@@ -22,6 +22,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { connect } from "react-redux";
 import MainRequestList from "./MainRequestList";
+import { PopupButton } from "../Shared/PopupButton";
 
 interface IUserBioProps {
   user: IPersonWithRequest;
@@ -120,87 +121,6 @@ class UserBio extends React.Component<IUserBioProps & IStoreProps, IUserBioState
     );
   }
 
-  renderButton() {
-    let { userButtonExpanded } = this.state;
-    return (
-      <ButtonGroup
-        variant="contained"
-        ref={this.anchorRef}
-        aria-label="split button"
-      >
-        <Button
-          size="small"
-          aria-controls={userButtonExpanded ? "split-button-menu" : undefined}
-          aria-expanded={userButtonExpanded ? "true" : undefined}
-          aria-label="select merge strategy"
-          aria-haspopup="menu"
-          onClick={() => {
-            this.setState({ userButtonExpanded: !userButtonExpanded });
-          }}
-        >
-          Interactions
-          <ArrowDropDownIcon />
-        </Button>
-      </ButtonGroup>
-    );
-  }
-
-  renderPopper() {
-    let { userButtonExpanded } = this.state;
-    let options: string[] = [
-      "Message",
-      "Vouch",
-      "Request vouch",
-      "Report",
-      "Block",
-    ];
-    return (
-      <Popper
-        sx={{
-          zIndex: 1,
-        }}
-        open={userButtonExpanded}
-        anchorEl={this.anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              backgroundColor: "#b4d6fa",
-              transformOrigin:
-                placement === "bottom" ? "center top" : "left bottom",
-            }}
-          >
-            <Paper>
-              <ClickAwayListener
-                onClickAway={() => {
-                  this.setState({ userButtonExpanded: false });
-                }}
-              >
-                <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
-                    <MenuItem
-                      key={option}
-                      onClick={(event) => {
-                        alert(`You selected ${option}`);
-                        this.setState({ userButtonExpanded: false });
-                      }}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    );
-  }
-
   render() {
     let { store, user } = this.props;
     return (<><span id={"topanchor"}></span>
@@ -258,8 +178,13 @@ class UserBio extends React.Component<IUserBioProps & IStoreProps, IUserBioState
             boxSizing: "border-box",
           }}
         >
-          {this.renderButton()}
-          {this.renderPopper()}
+        <PopupButton options={[
+      "Message",
+      "Vouch",
+      "Request vouch",
+      "Report",
+      "Block",
+    ]} label={"Interactions"}/>
         </div>
       </div></>
     );
