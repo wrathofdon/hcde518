@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hcde518/static/css/main.71f97ebb.css",
-    "main.js": "/hcde518/static/js/main.eab6a578.js",
+    "main.js": "/hcde518/static/js/main.e8e8687e.js",
     "static/js/787.ad305349.chunk.js": "/hcde518/static/js/787.ad305349.chunk.js",
     "static/media/Mint.jpg": "/hcde518/static/media/Mint.e38fba2a1865d52d8bf5.jpg",
     "static/media/NeutralWoman01.png": "/hcde518/static/media/NeutralWoman01.8cc2ce17a406bb974738.png",
@@ -15,6 +15,7 @@
     "static/media/Male05.png": "/hcde518/static/media/Male05.240ac48cda34ea378a99.png",
     "static/media/Male08.png": "/hcde518/static/media/Male08.ae52e7ef369ea2a615b0.png",
     "static/media/Female23.png": "/hcde518/static/media/Female23.20a09a0bc3b9a27e202c.png",
+    "static/media/Apartments.jpg": "/hcde518/static/media/Apartments.b7db0058207f3f58f2ce.jpg",
     "static/media/Female06.png": "/hcde518/static/media/Female06.b222153b4a6584f70ab4.png",
     "static/media/ConservativeWoman01.png": "/hcde518/static/media/ConservativeWoman01.cbe45fdb2f4cb2ac5cf7.png",
     "static/media/Student01.png": "/hcde518/static/media/Student01.e0e461e628f59a160220.png",
@@ -67,11 +68,11 @@
     "static/media/Hidden.png": "/hcde518/static/media/Hidden.e492c3a29789f5c15342.png",
     "index.html": "/hcde518/index.html",
     "main.71f97ebb.css.map": "/hcde518/static/css/main.71f97ebb.css.map",
-    "main.eab6a578.js.map": "/hcde518/static/js/main.eab6a578.js.map",
+    "main.e8e8687e.js.map": "/hcde518/static/js/main.e8e8687e.js.map",
     "787.ad305349.chunk.js.map": "/hcde518/static/js/787.ad305349.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.71f97ebb.css",
-    "static/js/main.eab6a578.js"
+    "static/js/main.e8e8687e.js"
   ]
 }
