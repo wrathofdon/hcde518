@@ -288,7 +288,7 @@ export const PeopleWithHistories: Record<string, IPersonWithRequest> = {
     verifiedContacts: 43,
     verifiedFriends: [
       {
-        person: maleFriends[141],
+        person: maleFriends[14],
         vouch: "He loves to teach people about the evils of fiat currency",
       },
       { person: maleFriends[12], vouch: "We worked at a startup together" },

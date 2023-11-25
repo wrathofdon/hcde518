@@ -15,7 +15,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { IPoolStore, IStoreProps } from "../../redux/poolStore";
+import { IPoolStore, IStoreProps, poolStore, storeDispatch } from "../../redux/poolStore";
 import { connect } from "react-redux";
 import { IPersonAbridged, generateRandomFemale, generateRandomMale } from "../Types/Types";
 import { TextField, PrimaryButton } from "@fluentui/react";
@@ -48,7 +48,6 @@ interface ITransferCardProps {
 
 interface ITransferCardState {
   isCommentsExpanded: boolean;
-  isLiked: boolean;
   comments: ICardComments[];
   addedComment: string;
 }
@@ -90,13 +89,18 @@ class TransferCard extends React.Component<
 combinedProps,
   ITransferCardState
 > {
+  public uniqueId: string;
+  public likeCount = Math.floor(Math.random() * 25) + 5;
 
   constructor(props: combinedProps) {
     super(props);
+    this.uniqueId = props.name1 + "-" + props.name2;
+    let comments = (this.props.comments || []).map(c => { return this.convertCommentsFromProps(c)});
+    let addedComments = this.props.store.content.addedComments[this.uniqueId];
+    if (addedComments) { comments = comments.concat(addedComments); }
     this.state = {
-      isLiked: false,
       isCommentsExpanded: false,
-      comments: (this.props.comments || []).map(c => { return this.convertCommentsFromProps(c)}),
+      comments: comments,
       addedComment: "",
     };
   }
@@ -117,7 +121,9 @@ combinedProps,
   };
 
   handleLikeClick = () => {
-    this.setState({ isLiked: !this.state.isLiked });
+    let isLiked = poolStore.getState().content.likedPosts.has(this.uniqueId);
+    if (isLiked) { storeDispatch.content.unlikePost(this.uniqueId); }
+    else { storeDispatch.content.likePost(this.uniqueId); }
   };
 
   renderAvatar(title: string, img?: string): JSX.Element {
@@ -181,7 +187,8 @@ combinedProps,
 
   
   render() {
-    let { comments, isCommentsExpanded, isLiked } = this.state;
+    let { comments, isCommentsExpanded } = this.state;
+    let isLiked = this.props.store.content.likedPosts.has(this.uniqueId);
     let commentString = "Add comment";
     if (comments?.length) {
        commentString = `${isCommentsExpanded ? "Hide" : "View"} comments (${comments.length})`
@@ -193,6 +200,7 @@ combinedProps,
           <IconButton aria-label="Like" onClick={this.handleLikeClick}>
             <FavoriteIcon style={{ color: isLiked ? "red" : undefined}}/>
           </IconButton>
+          <div >{isLiked ? this.likeCount + 1 : this.likeCount}</div>
           <div 
             onClick={this.handleExpandClick} style={{ 
   marginLeft: "auto",}} >{commentString}</div>
@@ -218,15 +226,17 @@ combinedProps,
       <div style={{ width: "100%", textAlign: "right", paddingTop: 5}}>
       <PrimaryButton disabled={!this.state.addedComment.trim()}
       onClick={() => {
+        let newCommentArray = [...comments, {
+          name: "You",
+          avatar: avatarPhotoMap.Hidden,
+          comment: this.state.addedComment,
+          date: new Date(),
+        }]
         this.setState({
-          comments: [...comments, {
-            name: "You",
-            avatar: avatarPhotoMap.Hidden,
-            comment: this.state.addedComment,
-            date: new Date(),
-          }],
+          comments: newCommentArray,
           addedComment: "",
-        })
+        });
+        storeDispatch.content.addComment({ key: this.uniqueId, comments: newCommentArray});
       }}>Submit</PrimaryButton></div>
 
           </CardContent>

@@ -1,21 +1,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/alt-text */
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { IPoolStore, IStoreProps, storeDispatch } from "../redux/poolStore";
 import { connect } from "react-redux";
 import {
@@ -27,15 +13,8 @@ import {
   Stack,
 } from "@mui/material";
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
-import { NotificationTypes } from "../redux/navigationStore";
-import MenuIcon from "@mui/icons-material/Menu";
-import Notifications from "@mui/icons-material/Notifications";
 import InboxIcon from "@mui/icons-material/Inbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { tokens } from "@fluentui/react-theme";
-import { BabyClothesHistory } from "./Notifications/BabyClothesHistory";
-import { PeopleWithHistories, namesArrayFemale } from "./Data/People";
-import MainRequestList from "./ItemRequest/MainRequestList";
+import HomeFeed from "./HomeFeed";
 
 interface IMenuDrawerProps {
   updateDrawerState: (anchor?: "left" | "right") => void;
@@ -52,6 +31,7 @@ enum OpenItemMenu {
   Events,
   Library,
   Account,
+  LegacyItems,
 }
 
 type combinedProps = IMenuDrawerProps & IStoreProps;
@@ -69,9 +49,7 @@ class MenuDrawer extends React.Component<combinedProps, IMenuDrawerState> {
       <ListItemButton
         sx={{ pl: 4 }}
         onClick={() => {
-          alert(
-            `You pressed the button for ${buttonText}.  This is still a prototype.  Nothing on the left menu is currently functional.`
-          );
+          storeDispatch.content.setMainContent(<>{`This is where the functionality for ${buttonText} would go.  Unfortunately, this is only a class project, so nothing on the left menu other than "Home" will work`}</>);
           this.props.updateDrawerState();
         }}
       >
@@ -90,6 +68,7 @@ class MenuDrawer extends React.Component<combinedProps, IMenuDrawerState> {
           {this.createButton("Edit profile")}
           {this.createButton("Settings")}
           {this.createButton("View History")}
+          {this.createButton("Verification")}
           {this.createButton("Payment/Billing")}
         </List>
       </Collapse>
@@ -150,6 +129,17 @@ class MenuDrawer extends React.Component<combinedProps, IMenuDrawerState> {
     );
   }
 
+  renderLegacyOptions(isExpanded: boolean) {
+    return (
+      <Collapse in={isExpanded} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          {this.createButton("Browse stories")}
+          {this.createButton("Create/Manage")}
+        </List>
+      </Collapse>
+    );
+  }
+
   render(): React.ReactNode {
     let { store } = this.props;
     let { expandedMenu } = this.state;
@@ -157,25 +147,15 @@ class MenuDrawer extends React.Component<combinedProps, IMenuDrawerState> {
       <List>
       <ListItemButton
         onClick={() => {
-          this.setState({
-            expandedMenu:
-              expandedMenu === OpenItemMenu.Account
-                ? OpenItemMenu.None
-                : OpenItemMenu.Account,
-          });
+          storeDispatch.content.setMainContent(HomeFeed.defaultContent);
+          this.props.updateDrawerState();
         }}
       >
         <ListItemIcon>
-          <InboxIcon />
+          <StarBorder />
         </ListItemIcon>
-        <ListItemText primary="Account" />
-        {expandedMenu === OpenItemMenu.Account ? (
-          <ExpandLess />
-        ) : (
-          <ExpandMore />
-        )}
+        <ListItemText primary={"Home"} />
       </ListItemButton>
-      {this.renderAccountOptions(expandedMenu === OpenItemMenu.Account)}
         <ListItemButton
           onClick={() => {
             this.setState({
@@ -260,6 +240,48 @@ class MenuDrawer extends React.Component<combinedProps, IMenuDrawerState> {
         )}
       </ListItemButton>
       {this.renderLibraryOptions(expandedMenu === OpenItemMenu.Library)}
+      <ListItemButton
+        onClick={() => {
+          this.setState({
+            expandedMenu:
+              expandedMenu === OpenItemMenu.LegacyItems
+                ? OpenItemMenu.None
+                : OpenItemMenu.LegacyItems,
+          });
+        }}
+      >
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText primary="Legacy items" />
+        {expandedMenu === OpenItemMenu.LegacyItems ? (
+          <ExpandLess />
+        ) : (
+          <ExpandMore />
+        )}
+      </ListItemButton>
+      {this.renderLegacyOptions(expandedMenu === OpenItemMenu.LegacyItems)}
+      <ListItemButton
+        onClick={() => {
+          this.setState({
+            expandedMenu:
+              expandedMenu === OpenItemMenu.Account
+                ? OpenItemMenu.None
+                : OpenItemMenu.Account,
+          });
+        }}
+      >
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText primary="Account" />
+        {expandedMenu === OpenItemMenu.Account ? (
+          <ExpandLess />
+        ) : (
+          <ExpandMore />
+        )}
+      </ListItemButton>
+      {this.renderAccountOptions(expandedMenu === OpenItemMenu.Account)}
       </List>
     );
   }

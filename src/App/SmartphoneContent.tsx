@@ -83,6 +83,7 @@ class SmartphoneContent extends React.Component<
                 Menu (None of this is functional)
               </ListSubheader>
             }
+            onClick={() => {this.updateDrawerState();}}
           >
           </List>
           <Divider />
@@ -144,7 +145,7 @@ class SmartphoneContent extends React.Component<
               aria-label="menu"
               sx={{ mr: 2 }}
               onClick={() => {
-                alert("pretend this opens a messaging UI");
+                storeDispatch.content.setMainContent(<div>This is where messaging functionality would go</div>)
               }}
             >
               <Badge badgeContent={2} color="secondary">

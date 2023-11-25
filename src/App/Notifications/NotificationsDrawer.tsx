@@ -47,7 +47,7 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { tokens } from "@fluentui/react-theme";
 import "./Notifications.css";
-import { BabyClothesHistory } from "./BabyClothesHistory";
+import BabyClothesHistory from "./BabyClothesHistory";
 import { PeopleWithHistories, namesArrayFemale } from "../Data/People";
 import MainRequestList from "../ItemRequest/MainRequestList";
 
@@ -85,7 +85,7 @@ class NotificationsDrawer extends React.Component<
             text: <><strong>Jeanne Barnes</strong> posted an update to "Box of baby clothes" item: "LOL!"</>,
             duration: "16 minutes ago",
             onClick: () => {
-                storeDispatch.content.setMainContent(<BabyClothesHistory store={this.props.store}/>);
+                storeDispatch.content.setMainContent(<BabyClothesHistory/>);
                 storeDispatch.navigation.removeNotification(NotificationTypes.BabyNames);
                 storeDispatch.navigation.setIsDrawerOpen();
                 let element = document.getElementById("babyanchor");
