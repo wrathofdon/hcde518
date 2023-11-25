@@ -1,0 +1,29 @@
+.notificationTextContainer {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.notificationCellContainer {
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.notificationCellContainer:hover {
+    background-color: lightgray;
+}
+
+.notificationTextContainer:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+.notificationTextIsUnread {
+    color: rgba(0, 0, 0, 1);
+}
+
+.notificationDurationIsUnread {
+    font-weight: 600;
+    color: #0f6cbd;
+}
