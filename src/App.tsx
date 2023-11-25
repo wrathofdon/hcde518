@@ -19,29 +19,30 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 initializeIcons();
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="App" style={{ paddingTop: 20 }}>
-               <div className='smartphone'>
-              <iframe src="./test" style={{ height: 640, width: 360, border: 0}}></iframe>
-        </div>
-            </div>
-          }
-        />
-        <Route
-          path="/test"
-          element={
-              <Provider store={poolStore}>
-                <SmartphoneContent/>
-              </Provider>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+  return (<>Testing</>
+
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route
+    //       path="/"
+    //       element={
+    //         <div className="App" style={{ paddingTop: 20 }}>
+    //            <div className='smartphone'>
+    //           <iframe src="./test" style={{ height: 640, width: 360, border: 0}}></iframe>
+    //     </div>
+    //         </div>
+    //       }
+    //     />
+    //     <Route
+    //       path="/test"
+    //       element={
+    //           <Provider store={poolStore}>
+    //             <SmartphoneContent/>
+    //           </Provider>
+    //       }
+    //     />
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 
