@@ -14,9 +14,19 @@ export interface IPersonAbridged {
     photo: string;
 }
 
-export interface IPersonDetailed extends IPersonAbridged {
+export enum ITransportation {
+    mobileWithCar = "Highly mobile / Personal vehicle",
+    mobileWithoutCar = "Highly mobile / Public transportation",
+    limited = "Mobile within limited range",
+    none = "Requires you to deliver",
+}
+
+export interface IPersonWithRequest extends IPersonAbridged {
     name: string;
     description: string;
+    requestText: string;
+    mobility: ITransportation,
+    availability: string;
     photo: string;
     neighborhoods: string[];
     nonprofits?: string[];
@@ -37,6 +47,7 @@ export interface IPersonDetailed extends IPersonAbridged {
     itemsReceived: number;
     itemsBorrowed: number;
     itemsReturned: number;
+    recentPunctualityComplaints?: number;
 }
 
 
@@ -216,7 +227,6 @@ export function generateRandomMale(): IPersonAbridged {
 }
 
 export function generateRandomGroup(women: number = 0, men: number = 0): IPersonAbridged[] {
-    console.log("test");
     let names: Set<string> = new Set([]);
     let photos: Set<string> = new Set([]);
     let output: IPersonAbridged[] = [];

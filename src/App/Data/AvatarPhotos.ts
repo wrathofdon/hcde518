@@ -39,6 +39,12 @@ import Male13 from "../../images/people/Male13.png";
 import Male14 from "../../images/people/Male14.png";
 import Male15 from "../../images/people/Male15.png";
 import Hidden from "../../images/people/Hidden.png";
+import Student01 from "../../images/people/Student01.png";
+import NeutralWoman01 from "../../images/people/NeutralWoman01.png";
+import FakeWoman01 from "../../images/people/FakeWoman01.png";
+import ConservativeWoman01 from "../../images/people/ConservativeWoman01.png";
+import ConservativeMan02 from "../../images/people/ConservativeMan02.png";
+import ConservativeMan01 from "../../images/people/ConservativeMan01.png";
 
 export const avatarArrayFemale = [
     Female01,
@@ -88,4 +94,10 @@ export const avatarArrayMale = [
 
 export const avatarPhotoMap: Record<string, string> = {
     Hidden: Hidden,
+    Student01: Student01,
+    NeutralWoman01: NeutralWoman01,
+    FakeWoman01: FakeWoman01,
+    ConservativeWoman01: ConservativeWoman01,
+    ConservativeMan01: ConservativeMan01,
+    ConservativeMan02: ConservativeMan02,   
 }

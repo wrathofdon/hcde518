@@ -33,7 +33,7 @@ export enum neighborhoodsEnum {
     Main = "Springfield on Main Stret",
     BLM = "Springfield BLM",
     LGTBQ = "Springfield LGTBQ Friendly",
-    Gated = "Gated acres in springfield",
+    Gated = "Gated Acres in Springfield",
     MAGA = "Make Springfield Great Again",
     Elementary = "Springfield Elementary",
     MiddleSchool = "Springfield Middle School",

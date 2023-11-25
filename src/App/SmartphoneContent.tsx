@@ -32,10 +32,10 @@ import {
 import { IOrganization } from "./Types/Types";
 import ComplexCard from "./Notifications/ComplexCard";
 import Student01 from "../../images/people/Student01.png";
-import BabyClothesHistory from "./Notifications/BabyClothesHistory";
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 import { NotificationTypes } from "../redux/navigationStore";
 import NotificationsDrawer from "./Notifications/NotificationsDrawer";
+import MenuDrawer from "./MenuDrawer";
 
 interface ISmartphoneContentProps {}
 
@@ -76,47 +76,19 @@ class SmartphoneContent extends React.Component<
         <Box
           sx={{ width: 250 }}
           role="presentation"
-          onClick={() => {
-            this.updateDrawerState();
-          }}
-          onKeyDown={() => {
-            this.updateDrawerState();
-          }}
         >
           <List
             subheader={
               <ListSubheader component="div" id="nested-list-subheader">
-                Menu
+                Menu (None of this is functional)
               </ListSubheader>
             }
           >
-            {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))} */}
           </List>
           <Divider />
-          {/* <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton  onClick={() => {
-                console.log(106);
-                storeDispatch.content.setMainContent(<BabyClothesHistory />)                
-              }}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List> */}
+          <MenuDrawer 
+        updateDrawerState={(anchor?: "left" | "right") => { this.updateDrawerState(anchor);}}/>
+          <Divider />
         </Box>
       </Drawer>
     );

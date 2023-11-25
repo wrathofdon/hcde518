@@ -42,6 +42,7 @@ interface ITransferCardProps {
     name2: string,
     img2: string,
     comments: string[],
+    itemName: string;
     date: Date,
 }
 
@@ -145,13 +146,13 @@ combinedProps,
   
 
   renderHeader() {
-    let {img1, img2, name1, name2, date}  = this.props;
+    let {img1, img2, name1, name2, date, itemName}  = this.props;
     return <div style={{ display: "flex", flexDirection: "row", width: "100%", padding: 16, boxSizing: "border-box"}}>
     <Avatar aria-label={name1}>
         <img src={img1} style={{ height: 40, width: 40, borderRadius: "50%"}}/>
         </Avatar>
         <div style={{width: "100%", paddingLeft: 16, paddingRight: 16}}>
-            <div style={mainTitleStyle}>{`${name1} gifted item to ${name2}`}</div>
+            <div style={mainTitleStyle}>{`${name1} gifted ${itemName} to ${name2}`}</div>
             <div style={mainSubTitleStyle}>{`${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}</div>
         </div>
         <Avatar aria-label={name2}>

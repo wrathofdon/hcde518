@@ -17,7 +17,7 @@ import baby7 from "../../images/babyclothes/baby7.jpg";
 import baby8 from "../../images/babyclothes/baby8.jpg";
 import TransferCard from "./TransferCard";
 
-class BabyClothesHistory extends React.Component<IStoreProps, {}> {
+export class BabyClothesHistory extends React.Component<IStoreProps, {}> {
   constructor(props: IStoreProps) {
     super(props);
     this.state = {};
@@ -61,7 +61,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
           ]}
         />
 
-        <TransferCard comments={[]} name1={"Wilma Pratt"} img1={avatarArrayFemale[1]} name2={"Shannon Adams"} img2={avatarArrayFemale[3]} date={new Date("01/19/2020")}/>
+        <TransferCard comments={[]} name1={"Wilma Pratt"} img1={avatarArrayFemale[1]} name2={"Shannon Adams"} img2={avatarArrayFemale[3]} date={new Date("01/19/2020")} itemName="Box of baby clothes"/>
 
         <ComplexCard
           title={"Shannon Adams posted an update"}
@@ -76,7 +76,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
 
         
 
-<TransferCard comments={[]} name1={"Shannon Adams"} img1={avatarArrayFemale[3]} name2={"Olga Baird"} img2={avatarArrayFemale[6]} date={new Date("11/04/2020")}/>
+<TransferCard comments={[]} name1={"Shannon Adams"} img1={avatarArrayFemale[3]} name2={"Olga Baird"} img2={avatarArrayFemale[6]} date={new Date("11/04/2020")}  itemName="Box of baby clothes"/>
 
         <ComplexCard
           title={"Olga Baird posted an update"}
@@ -89,7 +89,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
           }}
         />
 
-<TransferCard comments={[]} name1={"Olga Baird"} img1={avatarArrayFemale[6]} name2={"Sherrie Huston"} img2={avatarArrayFemale[23]} date={new Date("01/15/2021")}/>
+<TransferCard comments={[]} name1={"Olga Baird"} img1={avatarArrayFemale[6]} name2={"Sherrie Huston"} img2={avatarArrayFemale[23]} date={new Date("01/15/2021")}  itemName="Box of baby clothes"/>
 
         <ComplexCard
           title={"Sherrie Huston posted an update"}
@@ -102,7 +102,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
           }}
         />
 
-<TransferCard comments={[]} name1={"Sherrie Huston"} img1={avatarArrayFemale[23]} name2={"Felicia Powers"} img2={avatarArrayFemale[21]} date={new Date("02/10/2022")}/>
+<TransferCard comments={[]} name1={"Sherrie Huston"} img1={avatarArrayFemale[23]} name2={"Felicia Powers"} img2={avatarArrayFemale[21]} date={new Date("02/10/2022")}  itemName="Box of baby clothes"/>
 
         <ComplexCard
           title={"Felicia Powers posted an update"}
@@ -116,7 +116,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
         />
 
         
-<TransferCard comments={[]} name1={"Felicia Powers"} img1={avatarArrayFemale[21]} name2={"You"} img2={avatarPhotoMap.Hidden} date={new Date("01/10/2022")}/>
+<TransferCard comments={[]} name1={"Felicia Powers"} img1={avatarArrayFemale[21]} name2={"You"} img2={avatarPhotoMap.Hidden} date={new Date("01/10/2022")}  itemName="Box of baby clothes"/>
 
         <ComplexCard
           title={"You posted an update"}
@@ -129,7 +129,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
           }}
         />
         
-<TransferCard comments={[]} name1={"You"} img1={avatarPhotoMap.Hidden} name2={"Kristy Dennis"} img2={avatarArrayFemale[19]} date={new Date("01/10/2023")}/>
+<TransferCard comments={[]} name1={"You"} img1={avatarPhotoMap.Hidden} name2={"Kristy Dennis"} img2={avatarArrayFemale[19]} date={new Date("01/10/2023")}  itemName="Box of baby clothes"/>
         <ComplexCard
           title={"Kristy Dennis posted an update"}
           avatar={avatarArrayFemale[19]}
@@ -142,7 +142,7 @@ class BabyClothesHistory extends React.Component<IStoreProps, {}> {
         />
 
         
-<TransferCard comments={[]} name1={"Kristy Dennis"} img1={avatarArrayFemale[19]} name2={"Jeanne Barnes"} img2={avatarArrayFemale[15]} date={new Date("01/10/2023")}/>
+<TransferCard comments={[]} name1={"Kristy Dennis"} img1={avatarArrayFemale[19]} name2={"Jeanne Barnes"} img2={avatarArrayFemale[15]} date={new Date("01/10/2023")}  itemName="Box of baby clothes"/>
 <span id="babyanchor"></span>
         <ComplexCard
           title={"Jeanne Barnes posted an update"}
@@ -165,7 +165,3 @@ function mapStateToProps(state: IPoolStore): IStoreProps {
     store: state,
   };
 }
-
-const mapDispatchToProps = (dispatch: any) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BabyClothesHistory);

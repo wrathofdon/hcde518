@@ -47,7 +47,9 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { tokens } from "@fluentui/react-theme";
 import "./Notifications.css";
-import BabyClothesHistory from "./BabyClothesHistory";
+import { BabyClothesHistory } from "./BabyClothesHistory";
+import { PeopleWithHistories, namesArrayFemale } from "../Data/People";
+import MainRequestList from "../ItemRequest/MainRequestList";
 
 interface INotificationsDrawerProps {
     updateDrawerState: (anchor?: "left" | "right") => void;
@@ -83,14 +85,25 @@ class NotificationsDrawer extends React.Component<
             text: <><strong>Jeanne Barnes</strong> posted an update to "Box of baby clothes" item: "LOL!"</>,
             duration: "16 minutes ago",
             onClick: () => {
-                storeDispatch.content.setMainContent(<BabyClothesHistory/>);
+                storeDispatch.content.setMainContent(<BabyClothesHistory store={this.props.store}/>);
                 storeDispatch.navigation.removeNotification(NotificationTypes.BabyNames);
                 storeDispatch.navigation.setIsDrawerOpen();
                 let element = document.getElementById("babyanchor");
                 element?.scrollIntoView()
             }
-
+        },
+        {
+            key: NotificationTypes.MacGuffen,
+            avatar: avatarPhotoMap.Student01,
+            text: <><strong>{namesArrayFemale[36]}</strong> and four other people are have requested your item, "Used MacGuffen device"</>,
+            duration: "2 hours ago",
+            onClick: () => {
+                storeDispatch.content.setMainContent(<MainRequestList/>);
+                storeDispatch.navigation.removeNotification(NotificationTypes.MacGuffen);
+                storeDispatch.navigation.setIsDrawerOpen();
+            }
         }
+        
       ]
     };
   }
@@ -184,48 +197,6 @@ class NotificationsDrawer extends React.Component<
           {unread.map(card => { return this.renderCard(card, false)})}
           </>}
           {!this.state.showNewOnly && read.map(card => { return this.renderCard(card, true)})}
-          {/* <ListItemButton onClick={() => {}}>
-            <ListItemIcon onClick={() => {}}>
-              <Badge badgeContent={babyNamesActive ? 1 : 0} color="secondary">
-                <InboxIcon />
-              </Badge>
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-            {isLegacyItemsExpanded ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={isLegacyItemsExpanded} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
-                <ListItemText primary="Starred" />
-              </ListItemButton>
-            </List>
-          </Collapse> */}
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-      <ListItem key={text} disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItemButton>
-      </ListItem>
-    ))} */}
-        {/* </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
 
         </List>      </Box>
     );

@@ -1,5 +1,7 @@
-import { IPersonAbridged, IPersonDetailed } from "../Types/Types";
+import { IPersonAbridged, IPersonWithRequest, ITransportation as MobilityEnum } from "../Types/Types";
 import { neighborhoodsEnum, clubsEnum, nonprofitsEnum } from "./Organizations";
+import Student01 from "../../images/people/Student01.png"
+import { avatarArrayFemale, avatarArrayMale, avatarPhotoMap } from "./AvatarPhotos";
 
 export const namesArrayFemale: string[] = [
   "Velma Harrington",
@@ -157,56 +159,13 @@ export const namesArrayMale: string[] = [
   "Nathan Michael",
 ];
 
-export enum ProfilePictureMale {
-  Female01 = "Female01.png",
-  Female02 = "Female02.png",
-  Female03 = "Female03.png",
-  Female04 = "Female04.png",
-  Female05 = "Female05.png",
-  Female06 = "Female06.png",
-  Female07 = "Female07.png",
-  Female08 = "Female08.png",
-  Female09 = "Female09.png",
-  Female10 = "Female10.png",
-  Female11 = "Female11.png",
-  Female12 = "Female12.png",
-  Female13 = "Female13.png",
-  Female14 = "Female14.png",
-  Female15 = "Female15.png",
-  Female16 = "Female16.png",
-  Female17 = "Female17.png",
-  Female18 = "Female18.png",
-  Female19 = "Female19.png",
-  Female20 = "Female20.png",
-  Female21 = "Female21.png",
-  Female22 = "Female22.png",
-  Female23 = "Female23.png",
-  Female24 = "Female24.png",
-  Female25 = "Female25.png",
-  Male01 = "Male01.png",
-  Male02 = "Male02.png",
-  Male03 = "Male03.png",
-  Male04 = "Male04.png",
-  Male05 = "Male05.png",
-  Male06 = "Male06.png",
-  Male07 = "Male07.png",
-  Male08 = "Male08.png",
-  Male09 = "Male09.png",
-  Male10 = "Male10.png",
-  Male11 = "Male11.png",
-  Male12 = "Male12.png",
-  Male13 = "Male13.png",
-  Male14 = "Male14.png",
-  Male15 = "Male15.png",
-  Hidden = "Hidden.png",
-}
 
 const femaleFriends: IPersonAbridged[] = (() => {
   let output: IPersonAbridged[] = [];
   for (let i = 0; i < 25; i++) {
     output.push({
       name: namesArrayFemale[i],
-      photo: i < 10 ? `./images/people/Female0${i}.png` : `./images/people/Female${i}.png`,
+      photo: avatarArrayFemale[i],
     });
   }
   for (let i = 25; i < 35; i++) {
@@ -223,7 +182,7 @@ const maleFriends: IPersonAbridged[] = (() => {
   for (let i = 0; i < 15; i++) {
     output.push({
       name: namesArrayMale[i],
-      photo: i < 10 ? `./images/people/Male0${i}.png` : `./images/people/Male${i}.png`,
+      photo: avatarArrayMale[i],
     });
   }
   for (let i = 15; i < 25; i++) {
@@ -255,11 +214,25 @@ const maleFriends: IPersonAbridged[] = (() => {
 //     recentComplaints?: string[];
 // }
 
-export const PeopleWithHistories: Record<string, IPersonDetailed> = {
+
+// export const avatarPhotoMap: Record<string, string> = {
+//     Hidden: Hidden,
+//     Student01: Student01,
+//     NeutralWoman01: NeutralWoman01,
+//     FakeWoman01: FakeWoman01,
+//     ConservativeWoman01: ConservativeWoman01,
+//     ConservativeMan01: ConservativeMan01,
+//     ConservativeMan02: ConservativeMan02,   
+// }
+
+export const PeopleWithHistories: Record<string, IPersonWithRequest> = {
   ConservativeMale: {
     name: namesArrayMale[26],
-    photo: "ConservativeMan01.png",
+    photo: avatarPhotoMap.ConservativeMan01,
     description: "I support traditional values and keeping out THOSE people",
+    requestText: "This would look great next to my gun collection.  Pew pew pew.",
+    mobility: MobilityEnum.mobileWithCar,
+    availability: "Can pick up after work",
     neighborhoods: [
       neighborhoodsEnum.MAGA,
       neighborhoodsEnum.Gated,
@@ -299,8 +272,11 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
   },
   CryptoBro: {
     name: namesArrayMale[27],
-    photo: "ConservativeMan02.png",
+    photo: avatarPhotoMap.ConservativeMan02,
     description: "Super excited about NFTs",
+    requestText: "I think this would make an awesome NFT, bro.",
+    mobility: MobilityEnum.mobileWithCar,
+    availability: "My investments have given me a lot of flexbility",
     neighborhoods: [neighborhoodsEnum.Gated],
     clubs: [clubsEnum.Crypto, clubsEnum.Anime, clubsEnum.MLMs],
     daysOnPlatform: 256,
@@ -312,15 +288,15 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
     verifiedContacts: 43,
     verifiedFriends: [
       {
-        person: maleFriends[11],
+        person: maleFriends[141],
         vouch: "He loves to teach people about the evils of fiat currency",
       },
       { person: maleFriends[12], vouch: "We worked at a startup together" },
     ],
     verifiedNeighbors: [
       {
-        person: maleFriends[11],
-        vouch: "He owns a really nice house with a really nice case",
+        person: maleFriends[13],
+        vouch: "He owns a really nice house with a really nice car",
       },
     ],
     itemsOffered: 0,
@@ -334,8 +310,11 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
   },
   Karen: {
     name: namesArrayFemale[35],
-    photo: "ConservativeWoman01.png",
+    photo: avatarPhotoMap.ConservativeWoman01,
     description: "I believe that the best vaccine is prayer",
+    requestText: "My church would really appreciate this offering.",
+    mobility: MobilityEnum.none,
+    availability: "I have a very busy schedule",
     neighborhoods: [
       neighborhoodsEnum.MAGA,
       neighborhoodsEnum.Downtown,
@@ -372,19 +351,23 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
     itemsReceived: 12,
     itemsBorrowed: 18,
     itemsReturned: 18,
+    recentPunctualityComplaints: 3,
   },
   Fake: {
     name: namesArrayFemale[35],
-    photo: "FakeWoman01.png",
+    photo: avatarPhotoMap.FakeWoman01,
     description: "New to town, hoping to make friends",
+    requestText: "I recently lost one just like this, would really appreciate a replacement",
+    mobility: MobilityEnum.mobileWithCar,
+    availability: "Very flexible",
     neighborhoods: [neighborhoodsEnum.Downtown],
-    clubs: [clubsEnum.Anime, clubsEnum.Movies],
+    clubs: [clubsEnum.Anime, clubsEnum.Movies, clubsEnum.BookClub, clubsEnum.Taylor],
     daysOnPlatform: 410,
     isIdVerified: false,
     isPremium: false,
     donations: 0,
     volunteerHours: 0,
-    nonprofits: [nonprofitsEnum.Church, nonprofitsEnum.Soup],
+    nonprofits: [nonprofitsEnum.STEM, nonprofitsEnum.Soup, nonprofitsEnum.Womens],
     verifiedContacts: 21,
     verifiedFriends: [],
     verifiedNeighbors: [],
@@ -396,11 +379,15 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
     itemsReceived: 29,
     itemsBorrowed: 0,
     itemsReturned: 0,
+    recentPunctualityComplaints: 12,
   },
   Student: {
     name: namesArrayFemale[36],
-    photo: "Student01.png",
+    photo: avatarPhotoMap.Student01,
     description: "College student on the path to financial indepence",
+    requestText: "I could really use this for a class project, we just started learning about these items in English class.",
+    mobility: MobilityEnum.limited,
+    availability: "Would have to schedule after school",
     neighborhoods: [
       neighborhoodsEnum.College,
       neighborhoodsEnum.BLM,
@@ -417,7 +404,7 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
     isPremium: false,
     donations: 0,
     volunteerHours: 40,
-    nonprofits: [nonprofitsEnum.Fridge, nonprofitsEnum.STEM],
+    nonprofits: [nonprofitsEnum.Fridge, nonprofitsEnum.STEM, nonprofitsEnum.Tool],
     verifiedContacts: 21,
     verifiedFriends: [
       { person: femaleFriends[1], vouch: "She's my BFF from High School" },
@@ -437,5 +424,6 @@ export const PeopleWithHistories: Record<string, IPersonDetailed> = {
     itemsReceived: 5,
     itemsBorrowed: 6,
     itemsReturned: 6,
+
   },
 };

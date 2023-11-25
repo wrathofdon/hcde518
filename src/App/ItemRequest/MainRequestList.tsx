@@ -1,0 +1,243 @@
+import React from "react";
+import { IPoolStore, IStoreProps, storeDispatch } from "../../redux/poolStore";
+import { IPersonAbridged, IPersonWithRequest } from "../Types/Types";
+import {
+  Accordion,
+  AccordionSummary,
+  Button,
+  ButtonGroup,
+  Card,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+} from "@mui/material";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import { PeopleWithHistories } from "../Data/People";
+import "./ItemRequest.css";
+import UserBio from "./UserBio";
+import { connect } from "react-redux";
+
+interface IMainRequestListProps {
+}
+
+interface IMainRequestListState {
+  userButtonExpanded: boolean;
+}
+
+class MainRequestList extends React.Component<
+  IMainRequestListProps & IStoreProps,
+  IMainRequestListState
+> {
+  public anchorRef = React.createRef<HTMLDivElement>();
+  constructor(props: IMainRequestListProps & IStoreProps) {
+    super(props);
+    this.state = {
+      userButtonExpanded: false,
+    };
+  }
+
+  renderPerson(person: IPersonWithRequest) {
+    
+    return <Card style={{ padding: 16, marginTop: 8, marginBottom: 8}} className="UserRequestCard"
+    onClick={async () => {
+        storeDispatch.content.setMainContent(<UserBio user={person}/>);
+        setTimeout(() => {
+          let element = document.getElementById("topanchor");
+          element?.scrollIntoView();
+        }, 50);
+
+    }}>
+    <div style={{ display: "flex", flexDirection: "row" }}>
+      <div>
+        <img src={person.photo} style={{ width: 40, height: 40, borderRadius: "50%", marginRight: 16}}/>
+      </div>
+      <div style={{ width: "100%", boxSizing: "border-box" }}>
+        <strong>{person.name}: </strong> "{person.requestText}"<p/>
+        <strong>Availability: </strong> {person.availability}<p/>
+        <strong>Transportation: </strong> {person.mobility}
+      </div>
+    </div>
+  </Card>
+  }
+
+  
+  renderRequestAccordion(
+  ): JSX.Element {
+    let keys = Object.keys(PeopleWithHistories);
+    let header = `Requests (${keys.length || "None"})`;
+    let macGuffenRequestExpanded = this.props.store.content.macGuffenRequestExpanded;
+    return (
+      <Accordion disabled={!keys.length} expanded={macGuffenRequestExpanded}
+      onChange={(a, b) => {
+        storeDispatch.content.setMacGuffenRequestExpanded(b);
+      }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls={"Requests"}
+        //   id={type}
+        >
+          <Typography>{header}</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {keys.map((key) => {
+            return <>
+            <span id={PeopleWithHistories[key].name+ " anchor"}></span>
+            {this.renderPerson(PeopleWithHistories[key])}</>
+            // return this.renderTestimonial(p.person, p.vouch);
+          })}
+        </AccordionDetails>
+      </Accordion>
+    );
+  }
+
+  
+
+  renderButton() {
+    let { userButtonExpanded } = this.state;
+    return (
+      <ButtonGroup
+        variant="contained"
+        ref={this.anchorRef}
+        aria-label="split button"
+      >
+        <Button
+          size="small"
+          aria-controls={userButtonExpanded ? "split-button-menu" : undefined}
+          aria-expanded={userButtonExpanded ? "true" : undefined}
+          aria-label="select merge strategy"
+          aria-haspopup="menu"
+          onClick={() => {
+            this.setState({ userButtonExpanded: !userButtonExpanded });
+          }}
+        >
+          Interactions
+          <ArrowDropDownIcon />
+        </Button>
+      </ButtonGroup>
+    );
+  }
+
+  renderPopper() {
+    let { userButtonExpanded } = this.state;
+    let options: string[] = [
+      "Gift item",
+      "Pause listing",
+      "Edit description",
+      "Convert to legacy item",
+      "Convert to library item",
+      "Unpublish listing",
+    ];
+    return (
+      <Popper
+        sx={{
+          zIndex: 1,
+        }}
+        open={userButtonExpanded}
+        anchorEl={this.anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              backgroundColor: "#b4d6fa",
+              transformOrigin:
+                placement === "bottom" ? "center top" : "left bottom",
+            }}
+          >
+            <Paper>
+              <ClickAwayListener
+                onClickAway={() => {
+                  this.setState({ userButtonExpanded: false });
+                }}
+              >
+                <MenuList id="split-button-menu" autoFocusItem>
+                  {options.map((option, index) => (
+                    <MenuItem
+                      key={option}
+                      onClick={(event) => {
+                        alert(`You selected ${option}`);
+                        this.setState({ userButtonExpanded: false });
+                      }}
+                    >
+                      {option}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    );
+  }
+
+  render() {
+    let { store } = this.props;
+    let macguffen = store.content.macGuffenDescription;
+    return (
+      <div
+        style={{
+          fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
+          width: 323,
+          marginLeft: 16,
+          marginTop: 16,
+        }}
+      >
+        <strong>You posted this item 3 days ago:</strong>
+        <Card style={{ padding: 16, marginTop: 16, marginBottom: 16}}>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ width: "100%" }}>
+              <Typography color="text.primary">
+                <strong>{macguffen.title}</strong>
+              </Typography>
+            </div>
+            <div>
+              <EditIcon style={{ color: "#115ea3"}} onClick={() => { alert("Pretend this gives you the options to edit the content")}}/>
+            </div>
+          </div>
+          <img
+            src={macguffen.url}
+            style={{ width: "100%" }}
+          />
+          {macguffen.description}
+        </Card>
+        {this.renderRequestAccordion()}
+        
+        <div
+          style={{
+            width: "100%",
+            textAlign: "right",
+            padding: 16,
+            boxSizing: "border-box",
+          }}
+        >
+          {this.renderButton()}
+          {this.renderPopper()}
+        </div>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state: IPoolStore): IStoreProps {
+  return {
+    store: state,
+  };
+}
+
+const mapDispatchToProps = (dispatch: any) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainRequestList);

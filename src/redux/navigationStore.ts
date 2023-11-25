@@ -3,6 +3,7 @@ import { poolStore } from "./poolStore";
 
 export enum NotificationTypes {
   BabyNames = "BabyNames",
+  MacGuffen = "MacGuffen",
 }
 
 enum NavigationStoreActions {
@@ -19,7 +20,7 @@ export interface INavigationStoreState {
 
 
 const defaultState: INavigationStoreState = {
-  notificationsActive: new Set([NotificationTypes.BabyNames])
+  notificationsActive: new Set([NotificationTypes.BabyNames, NotificationTypes.MacGuffen])
 }
 
 export function createNavigationStoreMap(store: Store<any, AnyAction>) {
@@ -38,8 +39,10 @@ export function createNavigationStoreMap(store: Store<any, AnyAction>) {
     },
     removeNotification: (payload: NotificationTypes) => {
       let notificationsActive = new Set(Array.from(poolStore.getState().navigation.notificationsActive));
+      console.log(notificationsActive);
       if (!notificationsActive.has(payload)) { return; }
       notificationsActive.delete(payload);
+      console.log(notificationsActive);
       store.dispatch({
         type: NavigationStoreActions.removeNotification,
         payload: notificationsActive,
