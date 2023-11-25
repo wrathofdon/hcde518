@@ -118,7 +118,7 @@ class SmartphoneContent extends React.Component<
   render() {
     let { store } = this.props;
     return (
-      <div style={{ width: 360, height: 640, overflow: "hidden" }}>
+      <div style={{ width: 360, height: 640, overflow: "hidden", cursor: "pointer" }}>
         {this.renderLeftDrawer()}
         {this.renderRightDrawer()}
         <AppBar position="static">
