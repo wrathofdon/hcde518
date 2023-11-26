@@ -106,9 +106,13 @@ combinedProps,
 
   handleLikeClick = () => {
     let isLiked = poolStore.getState().content.likedPosts.has(this.props.uniqueId);
-    if (isLiked) { storeDispatch.content.unlikePost(this.props.uniqueId); }
-    else { storeDispatch.content.likePost(this.props.uniqueId); }
-    // this.setState({ isLiked: !this.state.isLiked });
+    if (isLiked) {
+      storeDispatch.content.unlikePost(this.props.uniqueId);
+      this.generateSnackBar("You unliked the post", 1000);
+    }
+    else { storeDispatch.content.likePost(this.props.uniqueId);
+      this.generateSnackBar("You liked the post", 1000);
+    }
   };
 
   renderAvatar(title: string, img?: string): JSX.Element {
@@ -192,7 +196,7 @@ combinedProps,
           </IconButton>
           
           <div >{isLiked ? this.likeCount + 1 : this.likeCount}</div>
-          {!!this.props.share && <IconButton aria-label="share" onClick={() => { alert("Pretend this lets you share a link")}}>
+          {!!this.props.share && <IconButton aria-label="share" onClick={() => { this.generateSnackBar("Pretend this lets you share a link")}}>
             <ShareIcon />
           </IconButton>}
           <div 
@@ -230,6 +234,7 @@ combinedProps,
           comments: newCommentArray,
           addedComment: "",
         });
+        this.generateSnackBar("Comment submitted!")
         storeDispatch.content.addComment({ key: this.props.uniqueId, comments: newCommentArray});
       }}>Submit</PrimaryButton></div>
 

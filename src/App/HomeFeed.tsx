@@ -12,7 +12,9 @@ import VacuumSealer from "../images/HomeFeed/VacuumSealer.jpg";
 import RepairCafe from "../images/HomeFeed/RepairCafe.jpg";
 import KnifeSharper from "../images/HomeFeed/KnifeSharpener.jpg";
 import STEM from "../images/HomeFeed/STEM.jpg";
+import Crockpot from "../images/HomeFeed/Crockpot.jpg";
 import BookClub from "../images/HomeFeed/BookClub.jpg";
+import Wedding from "../images/HomeFeed/Wedding.jpg";
 import Apartments from "../images/HomeFeed/Apartments.jpg";
 import { ModalButton } from "./Shared/ModalButton";
 import { DropdownButton } from "./Shared/DropdownButton";
@@ -99,6 +101,24 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     let person = generateRandomFemale();
     output.push(
       <ComplexCard
+        share={true}
+        uniqueId={"Home" + output.length}
+        title={`${person.name} is offering: 3qt Crockpot`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [Crockpot],
+          description:
+            "Does anyone want this?",
+          jsx: HomeFeed.generateGenericForm("Request", "Request: Crockpot", "Request submitted"),
+        }}
+      />
+    );
+    person = generateRandomMale();
+    output.push(
+      <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is offering: Fresh mint`}
         avatar={person.photo}
@@ -114,6 +134,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     );
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`Springfield Tool Library created a new event: Repair Cafe`}
         //   avatar={person01.photo}
@@ -190,6 +211,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     person = generateRandomMale();
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is in need of: Vacuum sealer`}
         avatar={person.photo}
@@ -206,6 +228,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     person = generateRandomFemale();
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is offering the following to borrow:  Knife Sharpener`}
         avatar={person.photo}
@@ -222,6 +245,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     let group = generateRandomGroup(3, 2);
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`Springfield STEM Expo sent a thank you note to your friend ${group[3].name} and 4 others`}
         avatar={group[3].photo}
@@ -237,6 +261,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     person = generateRandomFemale();
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is starting a new neighborhood group: Springfield Apartments`}
         avatar={person.photo}
@@ -254,6 +279,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     person = generateRandomFemale();
     output.push(
       <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is in need of: Basic household goods`}
         avatar={person.photo}
@@ -270,6 +296,42 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
     person = generateRandomFemale();
     output.push(
       <ComplexCard
+        share={true}
+        uniqueId={"Home" + output.length}
+        title={`${person.name} is starting a legacy item: Wedding Dress`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [Wedding],
+          description:
+            "Happily married with no intention of ever wearing this again, hoping to help the next lucky lady.  Size 2.",
+          jsx: HomeFeed.generateGenericForm("Request", "Request: Wedding dress", "Request submitted"),
+        }}
+      />
+    );
+    person = generateRandomMale();
+    output.push(
+      <ComplexCard
+      share={true}
+        uniqueId={"Home" + output.length}
+        title={`${person.name} would like to try: Electric Scooter`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [],
+          description:
+            "Hi everyone, I'm interested in getting an electric scooter to reduce carbon footprint, but I'm a little nervous because I've never used one before.  Is there anyone nearby who has one they can let me demo?",
+          
+            jsx: HomeFeed.generateGenericForm("Fulfill", "Fulfill Request: Electric scooter", "Offer submitted"),
+        }}
+      />
+    );
+    person = generateRandomFemale();
+    output.push(
+      <ComplexCard
+      share={true}
         uniqueId={"Home" + output.length}
         title={`${person.name} is starting a new club: Springfield Book Lovers`}
         avatar={person.photo}

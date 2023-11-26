@@ -37,9 +37,9 @@ export interface IContentStoreState {
 const defaultState: IContentStoreState = {
   content: HomeFeed.defaultContent,
   macGuffenDescription: {
-    title: "Item Offered: MacGuffen device looking for new home",
+    title: "MacGuffen device looking for new home",
     url: "https://media-cldnry.s-nbcnews.com/image/upload/streams/2013/November/131126/2D9787918-today-maltese-falcon-131126-tease.jpg",
-    description: "Gifting:  Used MacGuffen device.  Minor cosmetic damage, but still works great.  Recently upgraded to a newer model so I don't need this one anymore.  Smoke free home.",
+    description: "Used MacGuffen device.  Minor cosmetic damage, but still works great.  Recently upgraded to a newer model so I don't need this one anymore.  Smoke free home.",
   },
   macGuffenRequestExpanded: false,
   likedPosts: new Set(),

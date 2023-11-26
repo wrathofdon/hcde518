@@ -13,6 +13,7 @@ import {
   MenuList,
   Paper,
   Popper,
+  Snackbar,
 } from "@mui/material";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
@@ -33,6 +34,7 @@ interface IMainRequestListProps {
 
 interface IMainRequestListState {
   userButtonExpanded: boolean;
+  snackBar?: {text: string, duration: number}
 }
 
 class MainRequestList extends React.Component<
@@ -45,6 +47,11 @@ class MainRequestList extends React.Component<
     this.state = {
       userButtonExpanded: false,
     };
+  }
+
+  
+  generateSnackBar(text: string, duration: number = 3000) {
+    this.setState({ snackBar: { text: text, duration: duration}});
   }
 
   renderPerson(person: IPersonWithRequest) {
@@ -95,7 +102,6 @@ class MainRequestList extends React.Component<
             return <>
             <span id={PeopleWithHistories[key].name+ " anchor"}></span>
             {this.renderPerson(PeopleWithHistories[key])}</>
-            // return this.renderTestimonial(p.person, p.vouch);
           })}
         </AccordionDetails>
       </Accordion>
@@ -119,18 +125,27 @@ class MainRequestList extends React.Component<
           <div style={{ display: "flex", flexDirection: "row" }}>
             <div style={{ width: "100%" }}>
               <Typography color="text.primary">
-                <strong>{macguffen.title}</strong>
+                <strong>Title: {macguffen.title}</strong>
               </Typography>
             </div>
             <div>
-              <EditIcon style={{ color: "#115ea3"}} onClick={() => { alert("Pretend this gives you the options to edit the content")}}/>
+              <EditIcon style={{ color: "#115ea3"}} onClick={() => { this.generateSnackBar("Pretend this gives you the options to edit the content")}}/>
             </div>
           </div>
+          <p/>
+          <p/>
+          <strong>Description:</strong>
           <img
             src={macguffen.url}
             style={{ width: "100%" }}
           />
           {macguffen.description}
+
+          <p/>
+          <div style={{ fontSize: 12}}>
+          <div><strong>Share settings: </strong></div>
+          <div>Visible to: Friends, Neighbors, Clubs</div>
+          <div>Can be shared by: Custom friends list</div></div>
         </Card>
         {this.renderRequestAccordion()}
         
@@ -151,6 +166,12 @@ class MainRequestList extends React.Component<
             "Unpublish listing",
           ]} label={"Interactions"}/>
         </div>
+        <Snackbar
+        open={!!this.state.snackBar}
+        autoHideDuration={this.state.snackBar?.duration || 3000}
+        onClose={() => this.setState({ snackBar: undefined})}
+        message={this.state.snackBar?.text || ""}
+      />
       </div>
     );
   }
