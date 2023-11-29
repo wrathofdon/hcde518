@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hcde518/static/css/main.29c9115d.css",
-    "main.js": "/hcde518/static/js/main.6f374996.js",
+    "main.js": "/hcde518/static/js/main.5308710e.js",
     "static/js/787.ad305349.chunk.js": "/hcde518/static/js/787.ad305349.chunk.js",
     "static/media/Mint.jpg": "/hcde518/static/media/Mint.e38fba2a1865d52d8bf5.jpg",
     "static/media/Wedding.jpg": "/hcde518/static/media/Wedding.db23571177e242161b15.jpg",
@@ -63,6 +63,7 @@
     "static/media/Female01.png": "/hcde518/static/media/Female01.5ba678859586015f2a05.png",
     "static/media/baby2.jpg": "/hcde518/static/media/baby2.39840ed49e0a35b7bd80.jpg",
     "static/media/VacuumSealer.jpg": "/hcde518/static/media/VacuumSealer.8117b8e0ee171e1e1033.jpg",
+    "static/media/StandMixer.jpg": "/hcde518/static/media/StandMixer.679b13c6a12c1f5e0747.jpg",
     "static/media/Crockpot.jpg": "/hcde518/static/media/Crockpot.22928579550e43946730.jpg",
     "static/media/Male06.png": "/hcde518/static/media/Male06.11484ecb2cad7c589575.png",
     "static/media/baby5.jpg": "/hcde518/static/media/baby5.dd1c46f346ee54cebf3d.jpg",
@@ -72,11 +73,11 @@
     "static/media/Hidden.png": "/hcde518/static/media/Hidden.e492c3a29789f5c15342.png",
     "index.html": "/hcde518/index.html",
     "main.29c9115d.css.map": "/hcde518/static/css/main.29c9115d.css.map",
-    "main.6f374996.js.map": "/hcde518/static/js/main.6f374996.js.map",
+    "main.5308710e.js.map": "/hcde518/static/js/main.5308710e.js.map",
     "787.ad305349.chunk.js.map": "/hcde518/static/js/787.ad305349.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.29c9115d.css",
-    "static/js/main.6f374996.js"
+    "static/js/main.5308710e.js"
   ]
 }
