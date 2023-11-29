@@ -57,14 +57,7 @@ class MainRequestList extends React.Component<
   renderPerson(person: IPersonWithRequest) {
     
     return <Card style={{ padding: 16, marginTop: 8, marginBottom: 8}} className="UserRequestCard"
-    onClick={async () => {
-        storeDispatch.content.setMainContent(<UserBio user={person}/>);
-        setTimeout(() => {
-          let element = document.getElementById("topanchor");
-          element?.scrollIntoView();
-        }, 50);
-
-    }}>
+    >
     <div style={{ display: "flex", flexDirection: "row" }}>
       <div>
         <img src={person.photo} style={{ width: 40, height: 40, borderRadius: "50%", marginRight: 16}}/>
@@ -74,6 +67,18 @@ class MainRequestList extends React.Component<
         <strong>Availability: </strong> {person.availability}<p/>
         <strong>Transportation: </strong> {person.mobility}
       </div>
+    </div>
+    <div style={{ textAlign: "right"}}>
+      
+    <Button onClick={() => {
+        storeDispatch.content.setMainContent(<UserBio user={person}/>);
+        setTimeout(() => {
+          let element = document.getElementById("topanchor");
+          element?.scrollIntoView();
+        }, 50);
+    }} style={{ marginRight: 16}}>{"View profile"}</Button>
+    <Button onClick={() => { this.generateSnackBar("Start message app") }}>{"Message"}</Button>
+
     </div>
   </Card>
   }

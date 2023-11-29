@@ -45,6 +45,7 @@ interface IComplexCardProps {
   contents: {
     img: string[];
     description?: string;
+    descriptionArray?: string[];
     jsx?: (createSnackBar: (text: string, duration?: number) => void) => JSX.Element;
   }
   comments?: string[];
@@ -185,6 +186,11 @@ combinedProps,
         {!!this.props.contents.description && <CardContent>
           <Typography variant="body2" color="text.secondary">
             {this.props.contents.description}
+          </Typography>
+        </CardContent>}
+        {!!this.props.contents.descriptionArray?.length && <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {this.props.contents.descriptionArray?.map(text => {return <p>{text}</p>})}
           </Typography>
         </CardContent>}
         {!!this.props.contents.jsx && <CardContent>

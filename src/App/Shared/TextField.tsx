@@ -15,15 +15,6 @@ import {
   Popper,
   TextField,
 } from "@mui/material";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import EditIcon from "@mui/icons-material/Edit";
-import CheckIcon from "@mui/icons-material/Check";
-import { PeopleWithHistories } from "../Data/People";
-import { connect } from "react-redux";
 import { FontWeights, Modal, PrimaryButton, mergeStyleSets } from "@fluentui/react";
 import { IconButton as IconButtonFluent, getTheme, mergeStyles } from "@fluentui/react";
 

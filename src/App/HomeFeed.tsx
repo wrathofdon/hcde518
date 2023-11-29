@@ -15,6 +15,8 @@ import STEM from "../images/HomeFeed/STEM.jpg";
 import Crockpot from "../images/HomeFeed/Crockpot.jpg";
 import BookClub from "../images/HomeFeed/BookClub.jpg";
 import Wedding from "../images/HomeFeed/Wedding.jpg";
+import Donuts from "../images/HomeFeed/Donuts.jpg";
+import Chair from "../images/HomeFeed/Chair.jpg";
 import Apartments from "../images/HomeFeed/Apartments.jpg";
 import { ModalButton } from "./Shared/ModalButton";
 import { DropdownButton } from "./Shared/DropdownButton";
@@ -103,14 +105,14 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
       <ComplexCard
         share={true}
         uniqueId={"Home" + output.length}
-        title={`${person.name} is offering: 3qt Crockpot`}
+        title={`${person.name} is gifting: 3qt Crockpot`}
         avatar={person.photo}
         date={new Date()}
         comments={[]}
         contents={{
           img: [Crockpot],
-          description:
-            "Does anyone want this?",
+          descriptionArray:
+            ["Does anyone want this?", "Travel distance:  Roughly 5-10 minutes by car"],
           jsx: HomeFeed.generateGenericForm("Request", "Request: Crockpot", "Request submitted"),
         }}
       />
@@ -120,14 +122,14 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
       <ComplexCard
       share={true}
         uniqueId={"Home" + output.length}
-        title={`${person.name} is offering: Fresh mint`}
+        title={`${person.name} is gifting: Fresh mint`}
         avatar={person.photo}
         date={new Date()}
         comments={[]}
         contents={{
           img: [Mint],
-          description:
-            "It looks like my garden has been completely overrun.  Just stop by at any time and take as much as you want",
+          descriptionArray: [
+              "It looks like my garden has been completely overrun.  Just stop by at any time and take as much as you want", "Travel distance:  Roughly 30-45 minutes by car"],
           jsx: HomeFeed.generateGenericForm("Request", "Request: Fresh Mint", "Request submitted"),
         }}
       />
@@ -230,7 +232,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
       <ComplexCard
       share={true}
         uniqueId={"Home" + output.length}
-        title={`${person.name} is offering the following to borrow:  Knife Sharpener`}
+        title={`${person.name} is added to library:  Knife Sharpener`}
         avatar={person.photo}
         date={new Date()}
         comments={[]}
@@ -343,6 +345,54 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
             "Looking for new members who love books as much as I do!",
           
           jsx: HomeFeed.generateGenericForm("Signup", "Signups for Springfield Book Lovers", "Form submitted", "Please let us know some of your favorite books, and if you have any suggestions for meeting locations"),
+        }}
+      />
+    );
+    person = generateRandomMale();
+    output.push(
+      <ComplexCard
+      share={true}
+        uniqueId={"Home" + output.length}
+        title={`${person.name} is flash gifting: Donuts`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [Donuts],
+          description:
+            "Please pickup while they're still fresh.  EDIT:  No longer taking requests, pending pickup.",
+          
+          jsx: () => {
+            return <div>
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "right",
+                  padding: 16,
+                  boxSizing: "border-box",
+                }}
+              >
+                <Button variant="contained" disabled={true}>{"Request"}</Button>
+              </div>
+            </div>
+          },
+        }}
+      />
+    );
+    person = generateRandomFemale();
+    output.push(
+      <ComplexCard
+      share={true}
+        uniqueId={"Home" + output.length}
+        title={`${person.name} is gifting: Vintage chair`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [Chair],
+          description:
+            "Very comfortable.",
+            jsx: HomeFeed.generateGenericForm("Request", "Request: Vintage chair", "Request submitted"),
         }}
       />
     );
