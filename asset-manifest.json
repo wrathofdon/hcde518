@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/hcde518/static/css/main.71f97ebb.css",
-    "main.js": "/hcde518/static/js/main.46e59bd7.js",
+    "main.css": "/hcde518/static/css/main.29c9115d.css",
+    "main.js": "/hcde518/static/js/main.6f374996.js",
     "static/js/787.ad305349.chunk.js": "/hcde518/static/js/787.ad305349.chunk.js",
     "static/media/Mint.jpg": "/hcde518/static/media/Mint.e38fba2a1865d52d8bf5.jpg",
     "static/media/Wedding.jpg": "/hcde518/static/media/Wedding.db23571177e242161b15.jpg",
@@ -33,6 +33,7 @@
     "static/media/Female22.png": "/hcde518/static/media/Female22.d2d755a1489d260326c8.png",
     "static/media/Female10.png": "/hcde518/static/media/Female10.ea9df022b74d066aacba.png",
     "static/media/KnifeSharpener.jpg": "/hcde518/static/media/KnifeSharpener.9281aa16ef415ebcac2a.jpg",
+    "static/media/Chair.jpg": "/hcde518/static/media/Chair.858f4aefd8fbaa4dd7f4.jpg",
     "static/media/box.jpg": "/hcde518/static/media/box.a5d74c26199f5f439172.jpg",
     "static/media/ConservativeMan01.png": "/hcde518/static/media/ConservativeMan01.daa34b003e03405b8b52.png",
     "static/media/Female12.png": "/hcde518/static/media/Female12.8f962fe37f1e2444aeee.png",
@@ -55,6 +56,7 @@
     "static/media/baby8.jpg": "/hcde518/static/media/baby8.1fbdfb0f94faa5ba01a1.jpg",
     "static/media/Female05.png": "/hcde518/static/media/Female05.25e8cad2a93833bfe863.png",
     "static/media/Male02.png": "/hcde518/static/media/Male02.7b2f23a0eaf7d3f524f3.png",
+    "static/media/Donuts.jpg": "/hcde518/static/media/Donuts.21fc899965a9dc162cbe.jpg",
     "static/media/RepairCafe.jpg": "/hcde518/static/media/RepairCafe.13e0f20c9e3d55d75ebc.jpg",
     "static/media/Female02.png": "/hcde518/static/media/Female02.57654cd8d8cb8dc43c49.png",
     "static/media/baby1.jpg": "/hcde518/static/media/baby1.a53247570a63d0b8c93e.jpg",
@@ -69,12 +71,12 @@
     "static/media/baby3.jpg": "/hcde518/static/media/baby3.cd384db6974f43392508.jpg",
     "static/media/Hidden.png": "/hcde518/static/media/Hidden.e492c3a29789f5c15342.png",
     "index.html": "/hcde518/index.html",
-    "main.71f97ebb.css.map": "/hcde518/static/css/main.71f97ebb.css.map",
-    "main.46e59bd7.js.map": "/hcde518/static/js/main.46e59bd7.js.map",
+    "main.29c9115d.css.map": "/hcde518/static/css/main.29c9115d.css.map",
+    "main.6f374996.js.map": "/hcde518/static/js/main.6f374996.js.map",
     "787.ad305349.chunk.js.map": "/hcde518/static/js/787.ad305349.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.71f97ebb.css",
-    "static/js/main.46e59bd7.js"
+    "static/css/main.29c9115d.css",
+    "static/js/main.6f374996.js"
   ]
 }
