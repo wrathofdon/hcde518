@@ -19,7 +19,7 @@ import Donuts from "../images/HomeFeed/Donuts.jpg";
 import Chair from "../images/HomeFeed/Chair.jpg";
 import Apartments from "../images/HomeFeed/Apartments.jpg";
 import { ModalButton } from "./Shared/ModalButton";
-import { DropdownButton } from "./Shared/DropdownButton";
+import StandMixer from "../images/HomeFeed/StandMixer.jpg";
 import { Button, TextField } from "@mui/material";
 import { PopupButton } from "./Shared/PopupButton";
 
@@ -232,7 +232,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
       <ComplexCard
       share={true}
         uniqueId={"Home" + output.length}
-        title={`${person.name} is added to library:  Knife Sharpener`}
+        title={`${person.name} added item to library:  Knife Sharpener`}
         avatar={person.photo}
         date={new Date()}
         comments={[]}
@@ -240,7 +240,7 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
           img: [KnifeSharper],
           description:
             "It'll probably be a few months before I need to use this again, so let me know if you'd like to try it out.",
-          jsx: HomeFeed.generateGenericForm("Request", "Request to borrow: Knife Sharpener", "Request submitted", "Please let us know how experienced you are with these types of tools and how long you intend to borrow this"),
+          jsx: HomeFeed.generateGenericForm("Request to borrow", "Request to borrow: Knife Sharpener", "Request submitted", "Please let us know how experienced you are with these types of tools and how long you intend to borrow this"),
         }}
       />
     );
@@ -393,6 +393,23 @@ class HomeFeed extends React.Component<IStoreProps, IHomeFeedState> {
           description:
             "Very comfortable.",
             jsx: HomeFeed.generateGenericForm("Request", "Request: Vintage chair", "Request submitted"),
+        }}
+      />
+    );
+    person = generateRandomFemale();
+    output.push(
+      <ComplexCard
+      share={true}
+        uniqueId={"Home" + output.length}
+        title={`Betty Mocker added to library: Stand Mixer`}
+        avatar={person.photo}
+        date={new Date()}
+        comments={[]}
+        contents={{
+          img: [StandMixer],
+          description:
+            "This was an impulse buy during the pandemic, but I only used it a few times.  It turns out that most people don't need to make cookies on a daily basis.  Who knew?",
+            jsx: HomeFeed.generateGenericForm("Request to borrow", "Request to borrow: Stand Mixer", "Request submitted"),
         }}
       />
     );
